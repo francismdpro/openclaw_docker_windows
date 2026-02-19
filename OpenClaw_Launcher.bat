@@ -18,6 +18,15 @@ set REPO_ROOT=%~dp0
 if "!REPO_ROOT:~-1!"=="\" set REPO_ROOT=!REPO_ROOT:~0,-1!
 
 set CONFIG_DIR=!REPO_ROOT!\config
+set "CONFIG_FILE=!CONFIG_DIR!\openclaw.json"
+set "TOKEN_KEY=token"
+
+for /f "tokens=2 delims=:" %%a in ('findstr /C:"\"token\"" "%CONFIG_FILE%"') do (
+    set "token=%%a"
+    set "token=!token:"=!"
+    set "token=!token: =!"
+    echo Token extrait : !token!
+)
 
 :: Conversion chemin pour Docker Desktop/WSL
 :: Sur Windows: utilise format native Docker Desktop (C:\...) ou WSL (/mnt/c/...)
@@ -188,6 +197,10 @@ echo Browser VNC: http://localhost:6080/vnc.html
 echo.
 echo [TIP] Debug ports in Gateway: docker exec !CONTAINER_GATEWAY! netstat -tlnp
 echo [TIP] View logs: docker logs !CONTAINER_GATEWAY! -f
+echo.
+echo.
+echo Now GO : http://localhost:18789/overview
+echo and enter the "Gateway Token" : !token!
 echo.
 pause
 exit /b 0
