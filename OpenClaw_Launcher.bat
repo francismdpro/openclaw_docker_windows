@@ -169,6 +169,8 @@ echo.
 echo [INFO] Final network diagnostics:
 docker exec -u root  !CONTAINER_GATEWAY! apt-get update
 docker exec -u root !CONTAINER_GATEWAY! apt-get install -y net-tools
+docker exec -u root !CONTAINER_GATEWAY! ln -s /app/openclaw.mjs /usr/local/bin/openclaw 
+docker exec -u root !CONTAINER_GATEWAY! chmod a+rw /usr/local/bin/openclaw 
 docker exec !CONTAINER_GATEWAY! sh -c "netstat -tln 2>/dev/null || ss -tln 2>/dev/null | grep -E ':(18789|18791|18792|9222|5900|6080)'"
 echo.
 
