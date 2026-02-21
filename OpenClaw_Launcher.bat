@@ -97,7 +97,7 @@ docker run -d ^
     -p 9222:9222 ^
     -p 5900:5900 ^
     -p 6080:6080 ^
-    -e OPENCLAW_GATEWAY_TOKEN=ae44caec89309c57d77aeab12f1b33a0131e11345cd85ed2 ^
+    -e OPENCLAW_GATEWAY_TOKEN=!token! ^
     -v "!CONFIG_MOUNT!:/home/node/.openclaw" ^
     !IMAGE_GATEWAY! ^
     node openclaw.mjs gateway --allow-unconfigured --bind lan
